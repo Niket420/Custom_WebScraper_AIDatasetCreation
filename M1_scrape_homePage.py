@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import logging
-from config import CONFIG
+from news_scrapper.config_news_data import CONFIG
 import logging
 logger = logging.getLogger(__name__)
 

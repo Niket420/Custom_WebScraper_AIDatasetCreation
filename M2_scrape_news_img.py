@@ -1,6 +1,6 @@
 import logging
-from M1_scrape_homePage import scrape_top_stories_link
-from config import CONFIG
+from news_scrapper.M1_scrape_homePage import scrape_top_stories_link
+from news_scrapper.config_news_data import CONFIG
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin

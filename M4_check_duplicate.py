@@ -1,5 +1,5 @@
 from pymongo import UpdateOne
-from M3_storing_in_database import InitializeMongoDB
+from news_scrapper.M3_storing_in_database import InitializeMongoDB
 import os
 import logging
 logger = logging.getLogger(__name__)

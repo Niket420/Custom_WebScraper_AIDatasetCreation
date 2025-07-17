@@ -4,7 +4,7 @@ from M1_scrape_homePage import scrape_top_stories_link
 from M2_scrape_news_img import get_img_and_news
 from M3_storing_in_database import InitializeMongoDB
 from M4_check_duplicate import upsert_articles
-from config import CONFIG
+from news_scrapper.config_news_data import CONFIG
 import dotenv
 dotenv.load_dotenv()
 logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s',filename='process.log',encoding='utf-8')
