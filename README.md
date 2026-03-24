@@ -1,165 +1,151 @@
-# Custom Web Scraper for AI Dataset Creation
 
-A modular, production-oriented data pipeline that scrapes Google News to generate a continuous stream of <image, caption> tuples, suitable for training image captioning and multimodal AI systems.
+# AI Dataset Creation Pipeline (Web Scraper)
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/Web%20Scraping-BeautifulSoup-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/Database-MongoDB-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Architecture-Modular-black?style=flat-square" />
+  <img src="https://img.shields.io/badge/Status-Production--Ready-success?style=flat-square" />
+</p>
+
+
+
 
 
 ## Overview
 
-This project implements a scalable and configurable web scraping pipeline designed to automatically collect and store news data as structured datasets.
+A production-style data pipeline that scrapes Google News to generate a continuous stream of:
 
-The system:
-	•	Scrapes Google News dynamically (no hardcoded URLs)
-	•	Extracts top stories, including headlines and thumbnails
-	•	Handles lazy loading
-	•	Stores structured data in a database
-	•	Ensures deduplication
-	•	Runs as an automated pipeline (cron-friendly)
+<image, caption>
 
-## Motivation
+tuples for multimodal AI training.
 
-Inspired by datasets like Flickr30k, this project builds a custom data generation pipeline for real-world multimodal AI applications.
+This is not just scraping — it’s a mini data engineering system built with modularity, scalability, and automation in mind.
 
-Instead of static datasets, this system creates a live, continuously updating dataset — a much more realistic setup for modern AI systems.
+
+
+## Core Features
+	•	 Dynamic scraping (no hardcoded URLs/selectors)
+	•	 Lazy loading handling (real-world DOM behavior)
+	•	 Modular pipeline architecture
+	•	 Database storage with structured schema
+	•	 Intelligent deduplication
+	•	 Cron-job ready orchestration
+	•	 Logging for monitoring & debugging
 
 
 
 ## Architecture
 
-The pipeline follows a modular design:
-
-Google News → Homepage Scraper → Top Stories Extractor 
-→ Data Extraction (Image + Headline)
-→ Deduplication → Database Storage
-→ Continuous Pipeline Execution
-
-As described in the assignment workflow (see page 1 diagram)  ￼, the system continuously processes and stores <thumbnail, headline> pairs.
-
-
-##  Project Structure
-
-Google News 
-   → Homepage Scraper 
-      → Top Stories Extractor 
-         → Data Extraction (Image + Headline) 
-            → Deduplication 
-               → Database Storage 
-                  → Continuous Pipeline Execution
+Google News
+   ↓
+Homepage Scraper
+   ↓
+Top Stories Extractor
+   ↓
+Image + Headline Extraction
+   ↓
+Deduplication Engine
+   ↓
+MongoDB Storage
+   ↓
+Continuous Pipeline Execution
 
 
 
-##  Key Features
 
-1. Fully Configurable Scraping
-	•	No hardcoded URLs or selectors
-	•	Easily adaptable to layout changes
 
-2. Lazy Loading Handling
-	•	Handles dynamically loaded content
-	•	Ensures complete data extraction
-
-3. Modular Design
-
-Each module is independently testable:
-	•	Scraping
-	•	Extraction
-	•	Storage
-	•	Deduplication
-	•	Orchestration
-
-4. Database Integration
-	•	Stores:
-	•	Images (or references)
-	•	Headlines
-	•	Metadata (timestamps, URLs, etc.)
-	•	Designed for scalability
-
-5. Intelligent Deduplication
-	•	Prevents redundant entries
-	•	Can be extended beyond naive headline matching
-
-6. Production-Ready Orchestration
-	•	Central pipeline runner
-	•	Logging for debugging and monitoring
-	•	Easily schedulable via cron jobs
 
 
 
 ## Tech Stack
+
+Backend
 	•	Python
-	•	BeautifulSoup / Requests (or similar scraping tools)
-	•	Database: PostgreSQL / MongoDB / MariaDB (configurable)
-	•	Logging & Config-based architecture
+
+Web Scraping
+	•	BeautifulSoup
+	•	Requests
+
+Database
+	•	MongoDB
+
+System Design
+	•	Modular Pipeline
+	•	Config-driven architecture
+	•	Logging + Orchestration
 
 
 
-##  How to Run
+## Quick Start
 
-1. Install Dependencies
+1. Clone the repo
+
+git clone <your-repo-url>
+cd Custom_WebScraper_AIDatasetCreation
+
+
+
+
+2. Install dependencies
 
 pip install -r requirements.txt
 
-2. Configure Parameters
 
-Update:
+
+
+3. Configure parameters
+
+Edit:
 
 config_news_data.py
 
-You can change:
-	•	Base URLs
-	•	Selectors
-	•	Database configs
 
 
 
-3. Run Pipeline
+4. Run the pipeline
 
 python M5_main_orchestration.py
 
 
 
 
-4. (Optional) Automate with Cron
-
-crontab -e
-
-Example:
+ Automation (Cron Job)
 
 */30 * * * * python /path/to/M5_main_orchestration.py
 
 
 
 
-## Output
-
-The system continuously generates structured data:
+## Output Format
 
 {
-  "headline": "...",
-  "image_url": "...",
-  "article_url": "...",
-  "timestamp": "...",
-  "metadata": {...}
+  "headline": "string",
+  "image_url": "string",
+  "article_url": "string",
+  "timestamp": "datetime",
+  "metadata": {}
 }
 
-This can directly be used for:
-	•	Image captioning datasets
-	•	Multimodal LLM training
-	•	News intelligence systems
 
 
 
-## Design Highlights
-	•	Built for robustness against UI changes
-	•	Designed with real-world scraping challenges in mind
-	•	Separation of concerns → easy debugging & extension
-	•	Suitable for scaling into data engineering pipelines
+## Design Decisions
+	•	No hardcoded selectors → resilient to UI changes
+	•	Separation of concerns → easy debugging
+	•	Database-first approach → scalable storage
+	•	Logging layer → production readiness
 
 
 
 ## Future Improvements
-	•	Add async scraping (faster pipeline)
-	•	Integrate message queues (Kafka / RabbitMQ)
-	•	Add image downloading & preprocessing
-	•	Build dataset versioning system
-	•	Add evaluation metrics for dataset quality
+	•	Async scraping (faster throughput)
+	•	Kafka-based pipeline
+	•	Image download + preprocessing
+	•	Dataset versioning
+	•	Quality scoring for captions
 
+ics (even fake but realistic)
+
+That’s how you make recruiters pause.
